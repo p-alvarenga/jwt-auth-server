@@ -1,0 +1,31 @@
+.btn {
+	background-color: transparent;
+	padding: 6px 8px;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	font-family: var(--text_font);
+	font-weight: 400;
+	transition: .3s;
+}
+.btn:hover {
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.btn.yellow {
+	border-color: #F3BA2F;
+	color: white;
+}
+.btn.yellow.filled {
+	background-color: #F3BA2F;
+	color: var(--bkg-color);
+}
+
+.btn.red {
+	border-color: #F32013;
+	color: white;
+}
+.btn.red.filled {
+	background-color: #F32013;
+	color: var(--bkg-color);
+}

@@ -1,0 +1,62 @@
+@import url("/styles/btn.css");
+
+body {
+	background-color: var(--bkg_color);
+}
+
+main {
+	display:flex;
+	flex-direction:column;
+	width: fit-content;
+
+	margin:auto;
+	gap: 12px;
+}
+
+h1 {
+	color: white;
+	font-family: var(--text_font);
+}
+
+.form__user-info {
+	display:flex;
+	flex-direction:column;
+
+	align-items: center;
+	gap: 12px;
+
+	border: 1px solid grey;
+	border-radius: 4px;
+	padding: 24px 0;
+}
+
+.form__user-info > input[type=email],
+.form__user-info > input[type=password],
+.form__user-info > input[type=text] {
+	background-color:transparent;
+	border:1px solid grey;
+	border-radius:2px;
+	color:white;
+	padding:2px 4px;
+	width: 50%;
+}
+
+.form__user-info > .submit-user-info {
+	width: fit-content;	
+}
+
+.form__user-info > #signin-warning {
+	font-size: 12px;
+	color: grey;
+	font-family: var(--text-font);
+}
+
+.form__user-info > #signin-warning > a {
+	color: var(--color_yellow);
+}
+
+.form__user-info > label {
+	font-size: 1.2rem;
+	color: white;
+	font-family: var(--text_font);
+}
