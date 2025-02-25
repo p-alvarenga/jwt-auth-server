@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sign in</title>
+
+		<link href="/styles/root.css" rel="stylesheet"/>
+		<link href="/styles/index.css" rel="stylesheet"/>
+		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+		<script src="/scripts/sign-up.js" type="module" defer></script>
+	</head>
+	<body>
+		<main>	
+			<h1>Sign up in my WebPage</h1>
+			<form id="signup_form" class="form__user-info">
+				<label>Sign up</label>
+
+				<!-- WITHOUT REQUIRED !!! -->
+
+				<input name="username" type="text" placeholder="create username" maxlength="8"/>
+				<input name="email" type="email" placeholder="your email"/>
+				<input name="password" type="password" placeholder="your password"/>
+
+				<button id="submit_signup" class="btn yellow filled" type="submit">Sign-in</button>
+				<p class="form-warning">* Already have a account? <a href="/">login</a></p>
+			</form>
+		</main>
+	</body>	
+</html>

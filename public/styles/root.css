@@ -8,3 +8,5 @@
 	--color_red: #f32013;
 	--color_yellow: #f3ba2f;
 }
+
+h1,h2,h3,p { color: white; font-family: var(--text_font); }

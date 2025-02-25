@@ -11,11 +11,15 @@ main {
 
 	margin:auto;
 	gap: 12px;
+
+	width:25vw;
 }
 
 h1 {
 	color: white;
 	font-family: var(--text_font);
+	font-size: 2rem;
+	text-align: center;
 }
 
 .form__user-info {
@@ -45,13 +49,13 @@ h1 {
 	width: fit-content;	
 }
 
-.form__user-info > #signin-warning {
+.form__user-info > .form-warning {
 	font-size: 12px;
 	color: grey;
 	font-family: var(--text-font);
 }
 
-.form__user-info > #signin-warning > a {
+.form__user-info > .form-warning > a {
 	color: var(--color_yellow);
 }
 
