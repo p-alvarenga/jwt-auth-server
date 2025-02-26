@@ -13,12 +13,15 @@ export const SignUpUser = async (data) => {
 			body: JSON.stringify(data)
 		});
 
-		if (!response.ok) {
-			console.error(`ERROR [POST] => ${url}/users (${response.message})`);
-		}
+		//if (!response.ok) {
+			//console.log(response.error.message);
+		//}
 		
 		const json = await response;
+		console.log(json);
 	} catch (er) {
+		
+			
 		console.error(er);
 	}
 };

@@ -5,8 +5,12 @@ const router = express.Router();
 const validateUsername = require("../middlewares/validate-username.js");
 const validateEmailBasic = require("../middlewares/validate-email-basic.js");
 
-router.post("/users/", validateUsername, validateEmailBasic, (req, res) => {
-	res.status(201).send({ message: "User Created Successfully" });
-});
+const UsersController = require("../controllers/users-controller.js");
+
+router.post("/users/", 
+	validateUsername, 
+	validateEmailBasic, 
+	UsersController.PostNewUser
+);
 
 module.exports = router;
