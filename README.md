@@ -1,6 +1,6 @@
 ## NodeJS Login System Showcase
 
-This repo explores techniques of cybersecurity. Later on, I will prove my cybersecurity skills by trying to hack it. 
+This repo explores techniques of cybersecurity. Later on, I will test my cybersecurity skills by trying to hack it. 
 
 > [!NOTE]
 > Project has both back and front-end. You can check it inside `public/`. 
