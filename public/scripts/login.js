@@ -1,7 +1,16 @@
-//"use strict"
-//import { SignUpUser } from "/scripts/api.js";
+"use strict"
 
-//document.getElementById("submit_signup").addEventListener("click", ()=>alert("test"));
+import { authenticateUser } from "/scripts/api.js"
+const login_form = document.getElementById("login_form");
 
-console.log("pedro");
-window.alert("pedro");
+login_form.addEventListener("submit", (ev) => {
+	ev.preventDefault();
+	const formData = new FormData(ev.target);
+	const data = {
+		email: formData.get("email"),
+		password: formData.get("password"),
+	};
+
+
+	authenticateUser(data); 
+});

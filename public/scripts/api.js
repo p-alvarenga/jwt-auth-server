@@ -1,27 +1,47 @@
-const url = "http://localhost:3000/api";
+const url = "http://localhost:3000";
 
-export const SignUpUser = async (data) => {
+export const signUpUser = async (data) => {
 	if (!data || !data.username || !data.email || !data.password)
 		return null; 
 	
 	try {
-		const response = await fetch(`${url}/users`, {
+		const response = await fetch(`${url}/api/users`, {
 			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(data)
 		});
+		
+		const json = await response.json();
+		
+		if (!response.ok) {
+			throw new Error(json.error?.message || "Unknown Server Error"); 
+		}
 
-		//if (!response.ok) {
-			//console.log(response.error.message);
-		//}
-		
-		const json = await response;
-		console.log(json);
-	} catch (er) {
-		
-			
+	} catch (er) {	
 		console.error(er);
 	}
 };
+
+export const authenticateUser = async (data) => {
+	if (!data || !data.email || !data.password) {
+		console.log("no data provided");
+		return null;
+	}
+
+	try {
+		const response = await fetch(`${url}/api/login`, {
+			method: "POST", 
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		});
+
+		const json = await response.json();
+	
+		if (!response.ok) {
+			throw new Error(json.error?.message || "Unknown Server Error");
+		}
+
+	} catch (err) {
+		//console.error(err);
+	}
+}

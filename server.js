@@ -10,7 +10,7 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.static("public"));
-app.use("/api", userRoutes);
+app.use("/", userRoutes);
 
 app.get('/', (req, res) => {
 	res.sendFile(join(__dirname, "public/index.html"));

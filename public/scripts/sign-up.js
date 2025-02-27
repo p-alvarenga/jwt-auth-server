@@ -1,6 +1,6 @@
-import { SignUpUser } from "/scripts/api.js"
-
 "use strict"
+
+import { signUpUser } from "/scripts/api.js"
 
 const signup_form = document.getElementById("signup_form");
 
@@ -12,8 +12,7 @@ signup_form.addEventListener("submit", (ev) => {
 		email: formData.get("email"),
 		password: formData.get("password"),
 	};
-	
-	SignUpUser(data);
+	signUpUser(data);
 });
 
 //console.log("running /script/sign-up.js");

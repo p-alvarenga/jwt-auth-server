@@ -27,27 +27,57 @@ class UsersModel {
 			]);
 
 			return 1;
-		} catch (er) {
-			//console.error(er);
-			
+		} catch (er) {	
 			if (er.code === "23505") {
 				if (er.detail.includes("(username)=")) {
-					throw new DetailError("Internal Server Error",
-						"Username Already Exists",
+					throw new DetailError(
+						"Internal Server Error",
+						`Username ${user.username} Already Exists`,
 						"DUPLICATED_USERNAME",
+						400
 					);
 				} else if (er.detail.includes("(email)=")) {
-					throw new DetailError("Internal Server Error", 
-						"Email Already In Use",
+					throw new DetailError(
+						"Internal Server Error", 
+						`Email ${user.email} Already In Use`,
 						"DUPLICATED_EMAIL",
+						400
 					);
 				}
 			}	
-
 			throw new Error("Internal Server Error");
 		}
 	
 		return null;
+	}
+
+	static async findUserByEmail(email) {
+		if (!email) {
+			throw new DetailError(
+				"Bad Request",
+				"Email does not exist",
+				"BAD_REQUEST",
+				400,
+			);
+		}
+
+		try {
+			const q = "SELECT id, username, email, password FROM users WHERE email = $1";
+			const result = await pool.query(q, [email]);
+			
+			if (!result.rows[0]) {
+				throw new DetailError(
+					"Resource Not Found",
+					`Email "${email}" is not registered`,
+					"RESOURCE_NOT_FOUND",
+					404
+				);
+			}
+
+			return result.rows[0] || null;
+		} catch (err) {	
+			throw err;
+		}
 	}
 
 	static async #hashPassword(password) {
@@ -56,8 +86,8 @@ class UsersModel {
 		try {
 			const hash = await bcrypt.hash(password, saltRounds);
 			return hash;
-		} catch (er) {
-			console.error(er);
+		} catch (err) {
+			console.error(err);
 			throw new Error("Internal Server Error");
 		}
 	}
