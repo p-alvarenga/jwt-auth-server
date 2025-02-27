@@ -3,6 +3,16 @@ require("dotenv").config();
 
 const authenticateToken = (req, res, next) => {
 	const authHeader = req.headers["authorization"];
+	
+	if (!authHeader) {
+		return res.status(401).json({
+			error: {
+				message: "Token Not Provided",
+				code: "MISSING_AUTH_TOKEN",
+			}	
+		});
+	}
+
 	const test_token = authHeader.split(' ')[1];
 
 	if (!test_token) {
@@ -20,4 +30,4 @@ const authenticateToken = (req, res, next) => {
 	});
 }	
 
-module.exports = authenticateToken;
+module.exports = authenticateToken;	

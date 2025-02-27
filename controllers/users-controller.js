@@ -100,9 +100,28 @@ class UsersController {
 	}
 
 	static async getProfile(req, res) {
-		try {
-			return res.status(200).json({ message: "Profile Not Ready Yet" });
+		if (!req.token_payload) {
+			return res.status(401).json({
+				error: {
+					message: "Invalid Token", 
+					code: "AUTH_TOKEN_INVALID",
+				}
+			})
+		}
+
+		try {			
+			const profileData = await UsersModel.fetchProfileById(req.token_payload.id);
+
+			return res.status(200).json({ profile: {
+				userId: profileData.id,
+				username: profileData.username,
+				email: profileData.email,
+				photoUrl: profileData.photo,
+				description: profileData.description,
+			}});
 		} catch (err) {
+			console.log(err);
+
 			if (err instanceof DetailError) {
 				return res.status(err.statusCode).json({
 					message: err.cause || "Unknown Cause",

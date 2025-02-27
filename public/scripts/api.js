@@ -41,7 +41,34 @@ export const authenticateUser = async (data) => {
 			throw new Error(json.error?.message || "Unknown Server Error");
 		}
 
+		localStorage.setItem("token", json.token);
+		window.location.href = "/profile";
 	} catch (err) {
-		//console.error(err);
+		console.error(err);
 	}
 }
+
+export const fetchProfile = async () => {
+	const token = localStorage.getItem("token");
+
+	try {
+		const response = await fetch(`${url}/api/profile`, {
+			method: "GET",
+			headers: {
+				"Authorization": `Bearer ${token}`
+			}
+		});
+		
+
+		if (!response.ok) {
+			window.location.href = '/';
+			return;
+		}
+
+		const json = await response.json();
+
+		return json.profile;
+	} catch (err) {
+	
+	}
+};

@@ -62,7 +62,7 @@ class UsersModel {
 		}
 
 		try {
-			const q = "SELECT id, username, email, password FROM users WHERE email = $1";
+			const q = "SELECT id, email, password FROM users WHERE email = $1";
 			const result = await pool.query(q, [email]);
 			
 			if (!result.rows[0]) {
@@ -76,6 +76,35 @@ class UsersModel {
 
 			return result.rows[0] || null;
 		} catch (err) {	
+			throw err;
+		}
+	}
+
+	static async fetchProfileById(id) {
+		if (!id) {
+			throw new DetailError(
+				"Bad Request",
+				"Id does not provided (Invalid Token)",
+				"BAD_REQUEST",
+				404
+			);
+		}
+
+		try {
+			const q = "SELECT id, username, email, photo, description FROM users WHERE id = $1";
+			const result = await pool.query(q, [id]);
+
+			if (!result.rows[0]) {
+				throw new DetailError(
+					"Resource Not Found",
+					`Id "${id}" is not registered (user does not exist)`,
+					"RESOURCE_NOT_FOUND",
+					404
+				);
+			} 
+
+			return result.rows[0];
+		} catch (err) {
 			throw err;
 		}
 	}
