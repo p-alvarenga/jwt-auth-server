@@ -16,7 +16,8 @@ class UsersModel {
 
 			if (!hashedPassword) throw new Error("Internal Server Error");
 
-			console.log(`register ${user}`);
+			console.log("REGISTER: \n");
+			console.log(user);
 
 			await pool.query(q, [
 				user.username,
