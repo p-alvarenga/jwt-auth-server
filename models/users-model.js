@@ -7,17 +7,22 @@ const pool = require("../config/db.js");
 
 class UsersModel {
 	static async registerNewUser(user) {	
+		if (!user.username || !user.email || !user.password)
+			throw Error("INTERNAL SERVER ERROR"); 
+
 		try {
-			const q = "INSERT INTO Users(username, email, password) VALUES($1, $2, $3)";
+			const q = "INSERT INTO Users(username, email, password) VALUES(?, ?, ?)";
 			const hashedPassword = await this.#hashPassword(user.password);
 
 			if (!hashedPassword) throw new Error("Internal Server Error");
+
+			console.log(`register ${user}`);
 
 			await pool.query(q, [
 				user.username,
 				user.email,	
 				hashedPassword,
-			]);
+			]); // ^-- Does not analyze it's return?
 
 			return true;
 		} catch (er) {	
@@ -38,6 +43,7 @@ class UsersModel {
 					);
 				}
 			}		
+			//console.log(er);
 			throw new Error("Internal Server Error");
 		}
 	
@@ -46,10 +52,12 @@ class UsersModel {
 
 	static async findUserByEmail(email) {
 		try {
-			const q = "SELECT id, email, password FROM Users WHERE email = $1";
-			const result = await pool.query(q, [ email ]);
+			const q = "SELECT id, email, password FROM Users WHERE email = ?";
+			const [rows] = await pool.query(q, [email]);
 			
-			if (!result.rows[0]) {
+			console.log(rows[0]);
+
+			if (!rows[0]) {
 				throw new DetailError(
 					"Resource Not Found",
 					`Email "${email}" is not registered`,
@@ -58,7 +66,7 @@ class UsersModel {
 				);
 			}
 
-			return result.rows[0] || null;
+			return rows[0] || null;
 		} catch (err) {	
 			throw err; // [!] possible leak of sensitive information
 		}
@@ -66,10 +74,10 @@ class UsersModel {
 
 	static async fetchProfileById(id) {
 		try {
-			const q = "SELECT id, username, email, photo, description FROM Users WHERE id = $1";
-			const result = await pool.query(q, [id]);
+			const q = "SELECT id, username, email, photo, description FROM Users WHERE id = ?";
+			const [rows] = await pool.query(q, [id]);
 
-			if (!result.rows[0]) {
+			if (!rows[0]) {
 				throw new DetailError(
 					"Resource Not Found",
 					`Id "${id}" is not registered (user does not exist)`,
@@ -78,14 +86,14 @@ class UsersModel {
 				);
 			} 
 
-			return result.rows[0];
+			return rows[0];
 		} catch (err) {
 			throw err;
 		}
 	}
 
 	static async #hashPassword(password) {
-		const saltRounds = 5;
+		const saltRounds = 10;
 		
 		try {
 			const hash = await bcrypt.hash(password, saltRounds);

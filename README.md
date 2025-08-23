@@ -31,4 +31,4 @@ mysql -uroot -p < create-db/schema
 #### Project's To-do
 
 - [ ] Configure SSL protocol in `express.js` (HTTPS)
-- [ ] Configure a Reverse Proxy to hide true api endpoint 
+- [ ] Configure a Reverse Proxy to hide true api endpoint  
