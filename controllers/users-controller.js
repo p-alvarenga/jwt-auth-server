@@ -6,19 +6,17 @@ const jwt = require("jsonwebtoken");
 const DetailError = require("../utils/detail-error.js");
 const UsersModel = require("../models/users-model.js");
 
-class UsersController 
-{
+class UsersController {
 	static async PostNewUser(req, res) {
-
-		if (!req.body) {
+		if (!req.body || !req.body.username || !req.body.email || !req.body.password) {
 			return res.status(400).json({ 
-					success: false,
-					error: {
-						message: "User not provided",
-						code: "BAD_REQUEST",
-					}
-				});
-		}	
+				success: false,
+				error: {
+					message: "User not provided",
+					code: "BAD_REQUEST",
+				}
+			});
+		}
 
 		try {
 			const model_res = await UsersModel.registerNewUser(req.body);

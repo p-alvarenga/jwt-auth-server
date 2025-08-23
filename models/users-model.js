@@ -6,14 +6,9 @@ const DetailError = require("../utils/detail-error.js");
 const pool = require("../config/db.js");
 
 class UsersModel {
-	static async registerNewUser(user) {
-		if (!user || !user.username || !user.email || !user.password) {
-			throw new Error("Unexpected Error");
-		}
-
+	static async registerNewUser(user) {	
 		try {
-			const q = "INSERT INTO users(username, email, password) VALUES($1, $2, $3)";
-			
+			const q = "INSERT INTO Users(username, email, password) VALUES($1, $2, $3)";
 			const hashedPassword = await this.#hashPassword(user.password);
 
 			if (!hashedPassword) throw new Error("Internal Server Error");
@@ -50,17 +45,9 @@ class UsersModel {
 	}
 
 	static async findUserByEmail(email) {
-		if (!email)
-			throw new DetailError(
-				"Bad Request",
-				"Email does not exist",
-				"BAD_REQUEST",
-				400,
-			);
-
 		try {
-			const q = "SELECT id, email, password FROM users WHERE email = $1";
-			const result = await pool.query(q, [email]);
+			const q = "SELECT id, email, password FROM Users WHERE email = $1";
+			const result = await pool.query(q, [ email ]);
 			
 			if (!result.rows[0]) {
 				throw new DetailError(
@@ -71,24 +58,15 @@ class UsersModel {
 				);
 			}
 
-				return result.rows[0] || null;
+			return result.rows[0] || null;
 		} catch (err) {	
 			throw err; // [!] possible leak of sensitive information
 		}
 	}
 
 	static async fetchProfileById(id) {
-		if (!id) {
-			throw new DetailError(
-				"Bad Request",
-				"Id does not provided (Invalid Token)",
-				"BAD_REQUEST",
-				404
-			);
-		}
-
 		try {
-			const q = "SELECT id, username, email, photo, description FROM users WHERE id = $1";
+			const q = "SELECT id, username, email, photo, description FROM Users WHERE id = $1";
 			const result = await pool.query(q, [id]);
 
 			if (!result.rows[0]) {
