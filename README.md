@@ -23,7 +23,7 @@ You can create a compatible database with the provided SQL schema:
 mysql -uroot -p < create-db/schema
 ```
 
-> ![IMPORTANT]
+> [!IMPORTANT]
 > Do not forget to set `.env` file (there is a template `.env.example`)
 
 
