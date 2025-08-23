@@ -1,9 +1,11 @@
 const validateEmailBasic = (req, res, next) => {
 	const email = req.body.email;
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+	const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		
-	if (!email || !emailRegex.test(email)) {
-		return res.status(400).send({ message: "Please enter a valid email" });
+	if (!email || !email_regex.test(email)) { // structure better the Error Structure
+		return res.status(400).json({ 
+			message: "Please enter a valid email" 
+		});
 	}
 
 	next();

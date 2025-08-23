@@ -6,8 +6,10 @@ const jwt = require("jsonwebtoken");
 const DetailError = require("../utils/detail-error.js");
 const UsersModel = require("../models/users-model.js");
 
-class UsersController {
+class UsersController 
+{
 	static async PostNewUser(req, res) {
+
 		if (!req.body) {
 			return res.status(400).json({ 
 					success: false,
@@ -19,14 +21,7 @@ class UsersController {
 		}	
 
 		try {
-			const user_data = {
-				username: req.body.username,
-				email: req.body.email,
-				password: req.body.password,
-			};
-
-			const model_res = await UsersModel.registerNewUser(user_data);
-			
+			const model_res = await UsersModel.registerNewUser(req.body);
 			return res.status(201).json({ message: "User Created Successfully" })
 		} catch(err) {
 			if (err instanceof DetailError) {
@@ -44,7 +39,7 @@ class UsersController {
 				error: {
 					message: "Internal Server Error",
 					code: undefined,
-				}
+				},
 			}); 
 		}
 	}
@@ -61,17 +56,15 @@ class UsersController {
 		try {
 			const find_user = await UsersModel.findUserByEmail(req.body.email);
 			const valid_password = await bcrypt.compare(req.body.password, find_user.password);
-			
-//			console.log(find_user);
 
 			if (!valid_password) {
 				return res.status(401).json({
-					error: { message: "Incrrect Password", code: "AUTH_INCORRECT_PASSWORD" }
+					error: { message: "Incorrect Password", code: "AUTH_INCORRECT_PASSWORD" }
 				});
 			}
 				
 			const token = jwt.sign(
-				{ id: find_user.id, email: find_user.email },
+				{ id: find_user.id }, //, email: find_user.email }, // there is no need to return email
 				process.env.ACCESS_TOKEN_SECRET,
 				{ expiresIn: "1h" },
 			);
@@ -100,14 +93,13 @@ class UsersController {
 	}
 
 	static async getProfile(req, res) {
-		if (!req.token_payload) {
+		if (!req.token_payload)
 			return res.status(401).json({
 				error: {
 					message: "Invalid Token", 
 					code: "AUTH_TOKEN_INVALID",
 				}
 			})
-		}
 
 		try {			
 			const profileData = await UsersModel.fetchProfileById(req.token_payload.id);

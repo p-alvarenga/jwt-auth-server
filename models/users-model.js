@@ -16,9 +16,7 @@ class UsersModel {
 			
 			const hashedPassword = await this.#hashPassword(user.password);
 
-			if (!hashedPassword) {
-				throw new Error("Internal Server Error");
-			}
+			if (!hashedPassword) throw new Error("Internal Server Error");
 
 			await pool.query(q, [
 				user.username,
@@ -26,7 +24,7 @@ class UsersModel {
 				hashedPassword,
 			]);
 
-			return 1;
+			return true;
 		} catch (er) {	
 			if (er.code === "23505") {
 				if (er.detail.includes("(username)=")) {
@@ -44,7 +42,7 @@ class UsersModel {
 						400
 					);
 				}
-			}	
+			}		
 			throw new Error("Internal Server Error");
 		}
 	
@@ -52,14 +50,13 @@ class UsersModel {
 	}
 
 	static async findUserByEmail(email) {
-		if (!email) {
+		if (!email)
 			throw new DetailError(
 				"Bad Request",
 				"Email does not exist",
 				"BAD_REQUEST",
 				400,
 			);
-		}
 
 		try {
 			const q = "SELECT id, email, password FROM users WHERE email = $1";
@@ -74,9 +71,9 @@ class UsersModel {
 				);
 			}
 
-			return result.rows[0] || null;
+				return result.rows[0] || null;
 		} catch (err) {	
-			throw err;
+			throw err; // [!] possible leak of sensitive information
 		}
 	}
 

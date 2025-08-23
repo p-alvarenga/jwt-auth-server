@@ -1,12 +1,31 @@
-## NodeJS Login System Showcase
-
-This repo explores techniques of cybersecurity. Later on, I will test my cybersecurity skills by trying to hack it. 
+## NodeJS Authentication Login System Showcase
 
 > [!NOTE]
 > Project has both back and front-end. You can check it inside `public/`. 
 
 
 <hr/>
+
+
+### Requirements 
+
+- MySQL >= 10 
+- Node.JS >= 23
+
+
+### Database setup 
+
+This project requires a MySQL database. 
+
+You can create a compatible database with the provided SQL schema: 
+
+```bash
+mysql -uroot -p < create-db/schema
+```
+
+> ![ATTENTION]
+> Do not forget to set `.env` file (there is a template `.env.example`)
+
 
 #### Project's To-do
 
