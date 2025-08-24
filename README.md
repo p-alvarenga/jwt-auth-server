@@ -68,7 +68,7 @@ npm install
 
 ---
 
-### Database Setup
+## Database Setup
 
 This project uses `MySQL`. Create the database using the provided schema: 
 ```bash
