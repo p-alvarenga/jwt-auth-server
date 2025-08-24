@@ -3,6 +3,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-v23-green)](https://nodejs.org/)
 [![npm](https://img.shields.io/badge/npm-vlatest-orange)](https://www.npmjs.com/)
 [![MySQL](https://img.shields.io/badge/MySQL-v10-blue)](https://www.mysql.com/)
+
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Code Style](https://img.shields.io/badge/Code%20Style-Standard-brightgreen)](https://standardjs.com/)
 
