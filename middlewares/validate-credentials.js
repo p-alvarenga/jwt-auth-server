@@ -1,0 +1,40 @@
+"use strict"
+
+const isValidUsername = (req, res, next) => {
+	const username = req.body.username; 
+	const usernameRegex = /^[a-zA-z0-9]+$/
+
+	if (!username || username.length > 8 || username.length < 3) {
+		return res.status(400).send({ message: "Username must have more than 2 characters and less than 8" });
+	}
+
+	if (!usernameRegex.test(username)) {
+		return res.status(400).send({ message: "Username must me alphanumeric" });
+	}
+
+	next();
+};
+
+const isValidEmail = (req, res, next) => {
+	const email = req.body.email;
+	const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		
+	if (!email || !email_regex.test(email)) { // structure better the Error Structure
+		return res.status(400).json({ 
+			message: "Please enter a valid email" 
+		});
+	}
+
+	next();
+};
+
+const isValidPassword = (req, res, next) => {
+	const body = req.body; 
+	const password = body.password;
+
+	return (body || password);
+
+	next(); 
+}
+
+module.exports = { isValidUsername, isValidEmail, isValidPassword };

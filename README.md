@@ -4,9 +4,7 @@
 > Project has both back and front-end. You can check front-end code inside `public/`.
 > (for sake of simplicity, it's written in `HTML/CSS/JavaScript`).
 
-
-<hr/>
-
+--- 
 
 ### Requirements 
 

@@ -3,21 +3,22 @@
 const express = require("express");
 const router = express.Router();
 
-const validateUsername = require("../middlewares/validate-username.js");
-const validateEmailBasic = require("../middlewares/validate-email-basic.js");
 const authenticateToken = require("../middlewares/auth.js");
+const { isValidUsername, isValidEmail, isValidPassword } = require("../middlewares/validate-credentials.js");
 
 const UsersController = require("../controllers/users-controller.js");
 
 router.post("/api/users/", 
-	validateUsername, 
-	validateEmailBasic, 
-	UsersController.PostNewUser
+	isValidUsername, 
+	isValidEmail, 
+	//isValidPassword,
+	UsersController.postNewUser
 );
 
 router.post("/api/login/", 
-	validateEmailBasic,
-	UsersController.UserLogin
+	isValidEmail,
+	//isValidPassword, 
+	UsersController.userLogin
 );
 
 router.get("/api/profile", 
@@ -25,4 +26,4 @@ router.get("/api/profile",
 	UsersController.getProfile
 );
 
-module.exports = router;
+module.exports = router

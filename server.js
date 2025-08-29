@@ -1,16 +1,17 @@
 "use strict"
 
 const { join } = require("node:path");
+
 const express = require("express");
 const app = express();
 
 const userRoutes = require("./routes/users-route.js");
-
-const port = 3000;
+const errorHandler = require("./middlewares/error-handler.js")
+const PORT = 3000;
 
 app.use(express.json());
 app.use(express.static("public"));
-app.use("/", userRoutes);
+app.use('/', userRoutes);
 
 app.get('/', (req, res) => {
 	res.sendFile(join(__dirname, "public/index.html"));
@@ -20,6 +21,8 @@ app.use((req, res) => {
 	res.status(404).sendFile(__dirname + "/public/404.html");
 });
 
-app.listen(port, () => {
-	console.log("running at *:3000");
+app.use(errorHandler); 
+
+app.listen(PORT, () => {
+	console.log(`Server listening at *${PORT}`);
 });
