@@ -3,7 +3,7 @@
 import { fetchProfile } from "/scripts/api.js";
 
 const profile = await fetchProfile();
-console.log(profile);
+
 if (profile) {
 	document.title = profile.username || "undefined"; 
 	document.getElementById("profile-title").innerText = `Hello, ${profile.username}`;

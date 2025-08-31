@@ -1,33 +1,24 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+const { AuthError } = require("../utils/errors.js");
+
 const authenticateToken = (req, res, next) => {
-	const auth_header = req.headers["authorization"];
-	
-	if (!auth_header) {
-		return res.status(401).json({
-			error: {
-				message: "Token Not Provided",
-				code: "MISSING_AUTH_TOKEN",
-			}	
-		});
+	const authHeader = req.headers["authorization"];
+
+	try {
+		const testToken = authHeader?.split(' ')[1]; 
+
+		if (!authHeader || !testToken)
+			throw new AuthError("Token Not Provided", "MISSING_AUTH_TOKEN");
+
+		jwt.verify(testToken, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+			req.token_payload = payload;
+			next();
+		})
+	} catch(err) {
+		next(err);
 	}
-
-	const test_token = auth_header.split(' ')[1];
-
-	if (!test_token) {
-		return res.status(401).json({
-			error: {
-				message: "Token Not Provided",
-				code: "MISSING_AUTH_TOKEN",
-			}
-		});
-	}
-
-	jwt.verify(test_token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
-		req.token_payload = payload;
-		next();
-	});
 }	
 
 module.exports = authenticateToken;	

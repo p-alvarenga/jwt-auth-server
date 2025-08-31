@@ -1,15 +1,21 @@
 "use strict"
 
+const { ValidationError } = require("../utils/errors.js");
+
 const isValidUsername = (req, res, next) => {
 	const username = req.body.username; 
 	const usernameRegex = /^[a-zA-z0-9]+$/
 
-	if (!username || username.length > 8 || username.length < 3) {
-		return res.status(400).send({ message: "Username must have more than 2 characters and less than 8" });
-	}
+	try {
+		if (!username || username.length > 8 || username.length < 3) {
+			throw new ValidationError("Username Length Must Be Between 3 And 8");
+		}
 
-	if (!usernameRegex.test(username)) {
-		return res.status(400).send({ message: "Username must me alphanumeric" });
+		if (!usernameRegex.test(username)) {
+			throw new ValidationError("Username Must Be Alphanumeric");
+		}
+	} catch(err) {
+		next(err);
 	}
 
 	next();
@@ -17,12 +23,14 @@ const isValidUsername = (req, res, next) => {
 
 const isValidEmail = (req, res, next) => {
 	const email = req.body.email;
-	const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		
-	if (!email || !email_regex.test(email)) { // structure better the Error Structure
-		return res.status(400).json({ 
-			message: "Please enter a valid email" 
-		});
+	try {
+		if (!email || !emailRegex.test(email)) { 
+			throw new ValidationError("Invalid Email Address");
+		}
+	} catch(err) {
+		next(err);
 	}
 
 	next();

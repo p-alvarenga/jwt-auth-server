@@ -10,7 +10,7 @@ const UsersModel = require("../models/users-model.js");
 class UsersController {
 	static async postNewUser(req, res, next) {		
 		try {
-			const model_res = await UsersModel.registerNewUser(req.body);
+			await UsersModel.registerNewUser(req.body);
 			return res.status(201).json({ message: "User Created Successfully" })
 		} catch(err) {
 			next(err);
