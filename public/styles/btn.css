@@ -1,11 +1,11 @@
 .btn {
-	background-color: transparent;
+	font-family: var(--text_font);
 	padding: 6px 8px;
 	border: 1px solid transparent;
 	border-radius: 6px;
-	font-family: var(--text_font);
 	font-weight: 400;
 	transition: .3s;
+	background-color: transparent;
 }
 .btn:hover {
 	cursor: pointer;
@@ -17,6 +17,10 @@
 	color: white;
 }
 .btn.yellow.filled {
+	background-color: #F3BA2F;
+	color: var(--bkg-color);
+}
+.btn.yellow:hover {
 	background-color: #F3BA2F;
 	color: var(--bkg-color);
 }
