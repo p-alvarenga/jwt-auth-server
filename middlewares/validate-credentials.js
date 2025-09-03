@@ -29,8 +29,8 @@ const isValidEmail = (req, res, next) => {
 		if (!email || !emailRegex.test(email)) { 
 			throw new ValidationError("Invalid Email Address");
 		}
-	} catch(err) {
-		next(err);
+	} catch(err) { 
+		next(err); 
 	}
 
 	next();
@@ -38,7 +38,7 @@ const isValidEmail = (req, res, next) => {
 
 const isValidPassword = (req, res, next) => {
 	if (!req.body || !body.password) 
-		return ValidationError("Password not provided");
+		throw ValidationError("Password not provided");
 	
 	next(); 
 }

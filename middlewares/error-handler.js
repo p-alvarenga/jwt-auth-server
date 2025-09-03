@@ -1,7 +1,7 @@
 const { AppError, ValidationError, AuthError, NotFoundError } = require("../utils/errors.js"); 
 
 const errorHandler = (err, req, res, next) => {
-	console.log(err.stack);
+	console.log(err.stack); 
 
 	if (err instanceof AppError) {
 		return res.status(err.statusCode).json({

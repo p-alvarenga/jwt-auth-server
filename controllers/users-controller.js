@@ -42,13 +42,15 @@ class UsersController {
 				throw AuthError("Unexpected Error", "AUTH_UNEXPECTED_ERROR"); 
 			}
 
-			return res.status(200).json({ profile: {
-				userId: profileData.id,
-				username: profileData.username,
-				email: profileData.email,
-				photoUrl: profileData.photo,
-				description: profileData.description,
-			}});
+			return res.status(200).json({ 
+				profile: {
+					userId: profileData.id,
+					username: profileData.username,
+					email: profileData.email,
+					photoUrl: profileData.photo,
+					description: profileData.description,
+				}
+			});
 		} catch (err) {
 			next(err);
 		}

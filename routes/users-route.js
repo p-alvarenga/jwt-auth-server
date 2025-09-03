@@ -11,13 +11,13 @@ const UsersController = require("../controllers/users-controller.js");
 router.post("/api/users/", 
 	isValidUsername, 
 	isValidEmail, 
-	//isValidPassword,
+	isValidPassword,
 	UsersController.postNewUser
 );
 
 router.post("/api/login/", 
 	isValidEmail,
-	//isValidPassword, 
+	isValidPassword, 
 	UsersController.userLogin
 );
 

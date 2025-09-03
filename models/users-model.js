@@ -8,13 +8,13 @@ const { AppError, ValidationError, AuthError, NotFoundError } = require("../util
 class UsersModel {
 	static async registerNewUser(user) {	
 		try {
-			const q = "INSERT INTO Users(username, email, password) VALUES(?, ?, ?)";
+			const sqlQuery = "INSERT INTO Users(username, email, password) VALUES(?, ?, ?)";
 			const hashedPassword = await this.#hashPassword(user.password);
 
 			if (!hashedPassword) 
 				throw new AppError("Internal Server Error");
 
-			await pool.query(q, [
+			await pool.query(sqlQuery, [
 				user.username,
 				user.email,	
 				hashedPassword,
@@ -42,8 +42,8 @@ class UsersModel {
 
 	static async findUserByEmail(email) {
 		try {
-			const q = "SELECT id, email, password FROM Users WHERE email = ?";
-			const [rows] = await pool.query(q, [email]);
+			const sqlQuery = "SELECT id, email, password FROM Users WHERE email = ?";
+			const [rows] = await pool.query(sqlQuery, [email]);
 			
 			console.log(rows[0]);
 
@@ -59,8 +59,8 @@ class UsersModel {
 
 	static async fetchProfileById(id) {
 		try {
-			const q = "SELECT id, username, email, photo, description FROM Users WHERE id = ?";
-			const [rows] = await pool.query(q, [id]);
+			const sqlQuery = "SELECT id, username, email, photo, description FROM Users WHERE id = ?";
+			const [rows] = await pool.query(sqlQuery, [id]);
 
 			if (!rows[0]) {
 				throw new NotFoundError(`ID ${id} does not exist. User does not exist`);
@@ -73,14 +73,11 @@ class UsersModel {
 	}
 
 	static async #hashPassword(password) {
-		const saltRounds = 10;
-		
 		try {
-			const hash = await bcrypt.hash(password, saltRounds);
+			const hash = await bcrypt.hash(password, 10); // Salt rounds = 10
 			return hash;
 		} catch (err) {
-			console.error(err);
-			throw new AppError("Internal Server Error");
+			throw new AppError("Internal Server Error (HASHING)");
 		}
 	}
 }
