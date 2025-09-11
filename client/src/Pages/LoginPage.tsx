@@ -21,6 +21,8 @@ const LoginPage = ({ onLogin }) =>
 				email: email,
 				password: password
 			});
+	
+			navigate("/profile");
 			localStorage.setItem("token", res.data.token); 
 		} catch (e) {
 			console.error(e);
