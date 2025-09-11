@@ -37,7 +37,7 @@ const isValidEmail = (req, res, next) => {
 };
 
 const isValidPassword = (req, res, next) => {
-	if (!req.body || !body.password) 
+	if (!req.body || !req.body.password) 
 		throw ValidationError("Password not provided");
 	
 	next(); 

@@ -8,7 +8,7 @@ const { isValidUsername, isValidEmail, isValidPassword } = require("../middlewar
 
 const UsersController = require("../controllers/users-controller.js");
 
-router.post("/api/users/", 
+router.post("/api/signup/", 
 	isValidUsername, 
 	isValidEmail, 
 	isValidPassword,
