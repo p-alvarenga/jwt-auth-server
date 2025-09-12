@@ -1,12 +1,9 @@
-import ProfilePage from "./Pages/ProfilePage.tsx"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import ProfilePage from "./Pages/ProfilePage.tsx"
 import LoginPage from "./Pages/LoginPage.tsx"
 import SignUpPage from "./Pages/SignUpPage.tsx"
-
 import NotFoundPage from "./Pages/NotFoundPage.tsx"
-
-
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
 	return (
