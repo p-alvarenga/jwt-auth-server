@@ -54,7 +54,7 @@ const LoginPage = ({ onLogin }) =>
 				/>
 		
 				<input
-					type={password} 
+					type="password" 
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					placeholder="Your Password"
@@ -62,9 +62,9 @@ const LoginPage = ({ onLogin }) =>
 				/>
 
 				<Button
-					fontSize="1rem"
-					radius=".4rem"
-					hoverRadius=".6rem"
+					$fontSize="1rem"
+					$radius=".4rem"
+					$hoverRadius=".6rem"
 				>Log-in</Button>
 
 				<p id="note">* Do not have a account yet? <Link to="sign-up">create one!</Link></p>

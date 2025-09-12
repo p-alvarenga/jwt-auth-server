@@ -19,7 +19,7 @@ const SignUpPage = () => {
 		e.preventDefault();
 
 		try {
-			const res = await api.post("signup", {
+			const res = api.post("signup", {
 				username: username, 
 				email: email, 
 				password: password
@@ -53,14 +53,14 @@ const SignUpPage = () => {
 					type="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
-					placeholder="Your username"
+					placeholder="Your password"
 					required
 				/>
 				<Button
-					fill 
-					fontSize="1rem"
-					radius="1.2rem"
-					hoverRadius=".8rem"	
+					$fill
+					$fontSize="1rem"
+					$radius="1.2rem"
+					$hoverRadius=".8rem"	
 				>
 					Sign-up
 				</Button>
