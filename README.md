@@ -1,8 +1,10 @@
-## NodeJS Authentication Login System
+## NodeJS User Authentication
 
-[![Node.js](https://img.shields.io/badge/Node.js-v23-green)](https://nodejs.org/)
-[![npm](https://img.shields.io/badge/npm-vlatest-orange)](https://www.npmjs.com/)
-[![MySQL](https://img.shields.io/badge/MySQL-v10-blue)](https://www.mysql.com/)
+
+[![React](https://img.shields.io/badge/React.js-v18-61DAFB)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-v23-5FA04E)](https://nodejs.org/)
+[![npm](https://img.shields.io/badge/npm-vlatest-CB3837)](https://www.npmjs.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-v10-4479A1)](https://www.mysql.com/)
 
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Code Style](https://img.shields.io/badge/Code%20Style-Standard-brightgreen)](https://standardjs.com/)
@@ -12,7 +14,7 @@ A simple authentication system built with **Node.js** and **MySQL**, featuring l
 
 
 > [!NOTE]
-> The front-end is located in the `public/` folder and is built with HTML, CSS, and JavaScript for simplicity.
+> The front-end is located in the `client/`. Written in React and built into `dist/`.
 
 ---
 
@@ -94,14 +96,13 @@ cp .env.example .env
 ## Screenshots
 
 ##### Log-in form 
-<img width="542" height="auto" alt="image" src="https://github.com/user-attachments/assets/efba4a2d-d339-4c27-aea3-4ecce2dd1062" />
-
+<img width="576" height="397" alt="image" src="https://github.com/user-attachments/assets/d75a43e1-f1b0-4531-a531-a6949b301328" />
 
 ##### Sign-up form 
-<img width="542" height="auto" alt="image" src="https://github.com/user-attachments/assets/bc8615f6-55c4-48e8-b9c7-e518ca52592d" />
+<img width="576" height="397" alt="image" src="https://github.com/user-attachments/assets/0524b16d-81dc-4b0a-a3ad-d56d72f97b3c" />
 
 #### Profile Page (under development)
-<img width="542" height="auto" alt="image" src="https://github.com/user-attachments/assets/2ddee16c-ed32-438a-b3cf-ed804f1663a3" />
+<img width="665" height="409" alt="image" src="https://github.com/user-attachments/assets/f01744f4-e908-487e-8e61-45a940361f40" />
 
 ## Future improvements
 - Email verification
