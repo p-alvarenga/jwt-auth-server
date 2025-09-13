@@ -1,12 +1,15 @@
 "use strict"
 
-const { join } = require("node:path");
+const path = require("path");
+
 
 const express = require("express");
 const cors = require("cors");
 
 const app = express();
+const PORT = 3000;
 
+// v-- Remove on oficial version
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:5173"); 
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
@@ -21,18 +24,15 @@ app.use((req, res, next) => {
 
 const userRoutes = require("./routes/users-route.js");
 const errorHandler = require("./middlewares/error-handler.js")
-const PORT = 3000;
 
 app.use(express.json());
-app.use(express.static("public"));
-app.use('/', userRoutes);
 
+const distPath = path.join(__dirname, "./dist"); 
+app.use(express.static(distPath));
+
+app.use('/', userRoutes);
 app.get('/', (req, res) => {
 	res.sendFile(join(__dirname, "public/index.html"));
-});
-
-app.use((req, res) => {
-	res.status(404).sendFile(__dirname + "/public/404.html");
 });
 
 app.use(errorHandler); 

@@ -53,11 +53,9 @@ const ProfilePage = () => {
 					}}>
 						<Button	
 							onClick={onLogOut}
-
 							$fill
 							$radius=".8rem"
 							$hoverRadius=".8rem"
-
 							$injection="
 								background-color:transparent!important;
 								border-color:red!important;
