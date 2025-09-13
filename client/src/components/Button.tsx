@@ -27,6 +27,7 @@ const ButtonStyle = styled.button<{ $injection?:string | null; $fill?:boolean; $
 `;
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	onClick?: any,
 	$injection?: string, 
 	$fill?: boolean, 
 	$fontSize?: string,
@@ -37,9 +38,11 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	children: React.ReactNode
 };
 
-const Button = ({ $injection, $fill, $fontSize, $radius, $hoverRadius, $pV, $pH, children }: ButtonProps) => {
+const Button = ({ onClick, $injection, $fill, $fontSize, $radius, $hoverRadius, $pV, $pH, children }: ButtonProps) => {
 	return (
 		<ButtonStyle
+			onClick={onClick}
+
 			$injection={$injection}
 			$fill={$fill}
 			$fontSize={$fontSize}

@@ -40,9 +40,7 @@ const ProfilePage = () => {
 
 	const onLogOut = () => {
 		localStorage.removeItem("token");
-		
-		navigate("/"); // why it does not work?
-		console.log("got here");
+		navigate("/");
 	}
 
 	return (
@@ -54,7 +52,7 @@ const ProfilePage = () => {
 						justifyContent: "right"
 					}}>
 						<Button	
-							onClick={() => onLogOut()}
+							onClick={onLogOut}
 
 							$fill
 							$radius=".8rem"
