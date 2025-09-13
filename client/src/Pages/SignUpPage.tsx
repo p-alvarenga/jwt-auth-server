@@ -12,19 +12,19 @@ const SignUpPage = () => {
 	const [ email, setEmail ] = useState("");
 	const [ password, setPassword ] = useState(""); 
 
-	const [ error, setError ] = useState("");
+//	const [ error, setError ] = useState("");
 
-	const handleSubmit = async(e) => {
+	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>): Promise<any> => {
 		e.preventDefault();
 
 		try {
-			const res = api.post("signup", {
+			await api.post("signup", {
 				username: username, 
 				email: email, 
 				password: password
 			});
 
-			navigate("/");  // server must return token to actual login directly
+			navigate("/");  // server must return token instead of "ok"; 
 		} catch (e) {
 			console.log(e); 
 		}

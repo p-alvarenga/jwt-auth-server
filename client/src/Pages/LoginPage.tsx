@@ -6,14 +6,14 @@ import api from "../utils/api.ts"
 import Form from "../components/Form.tsx"
 import Button from "../components/Button.tsx"
 
-const LoginPage = ({ onLogin }) =>
+const LoginPage = () =>
 {
 	const navigate = useNavigate(); 
 
 	const [ email, setEmail ] = useState("");
 	const [ password, setPassword ] = useState("");
 
-	const handleSubmit = async(e) => {
+	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>): Promise<any> => {
 		e.preventDefault();
 
 		try {
@@ -43,7 +43,7 @@ const LoginPage = ({ onLogin }) =>
 			/> 
 		*/
 		<>
-			<Form onSubmit={handleSubmit}>
+			<Form onSubmit={(e) => handleSubmit(e)}>
 				<h1 id="form-title">WebServer Log-in</h1>
 				<input
 					type="email"

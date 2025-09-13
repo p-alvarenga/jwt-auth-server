@@ -18,7 +18,6 @@ const ProfilePage = () => {
 
 	const [ profile, setProfile ] = useState<Profile | null>(null); 
 	const [ isLoading, setIsLoading ] = useState<boolean>(true); 
-	const [ error, setError ] = useState<any>(null);
 
 	useEffect(() => {
 		const token = localStorage.getItem("token");
@@ -31,7 +30,6 @@ const ProfilePage = () => {
 				setIsLoading(false);
 				setProfile(res.data.profile);
 			} catch (err) { 
-				setError(err);
 				console.error("[ERROR] Profile Page fetch\n", err);
 				navigate("/");
 			}
@@ -73,7 +71,7 @@ const ProfilePage = () => {
 						>Log out</Button>
 					</nav>
 
-					<h1>Hello, { profile.username }!</h1>
+					<h1>Hello, { profile?.username }!</h1>
 					{ /* <img> & buttons */ }
 				</> 
 

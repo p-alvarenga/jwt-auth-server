@@ -1,6 +1,6 @@
 import styled from "styled-components"; 
 
-const ButtonStyle = styled.button<{ $injection?:string | null; $fill?:bollean; $fontSize?:string; $radius?:string; $hoverRadius?:string; $pH?:string; $pV?:string; }>
+const ButtonStyle = styled.button<{ $injection?:string | null; $fill?:boolean; $fontSize?:string; $radius?:string; $hoverRadius?:string; $pH?:string; $pV?:string; }>
 `
 	${ props => props.$injection ? props.$injection : "" }; 
 
@@ -26,7 +26,18 @@ const ButtonStyle = styled.button<{ $injection?:string | null; $fill?:bollean; $
 	}
 `;
 
-const Button = ({ $injection, $fill, $fontSize, $radius, $hoverRadius, $pV, $pH, children, ...props }) => {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	$injection?: string, 
+	$fill?: boolean, 
+	$fontSize?: string,
+	$radius?: string,
+	$hoverRadius?: string, 
+	$pV?: string,
+	$pH?: string, 
+	children: React.ReactNode
+};
+
+const Button = ({ $injection, $fill, $fontSize, $radius, $hoverRadius, $pV, $pH, children }: ButtonProps) => {
 	return (
 		<ButtonStyle
 			$injection={$injection}
@@ -36,7 +47,6 @@ const Button = ({ $injection, $fill, $fontSize, $radius, $hoverRadius, $pV, $pH,
 			$hoverRadius={$hoverRadius}
 			$pV={$pV}
 			$pH={$pH}
-			{...props}
 		>
 			{ children }
 		</ButtonStyle>
