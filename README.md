@@ -1,4 +1,4 @@
-## NodeJS User Authentication
+# NodeJS User Authentication
 
 
 [![React](https://img.shields.io/badge/React.js-v18-61DAFB)](https://nodejs.org/)
@@ -9,14 +9,9 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Code Style](https://img.shields.io/badge/Code%20Style-Standard-brightgreen)](https://standardjs.com/)
 
-A simple authentication system built with **Node.js** and **MySQL**, featuring login, registration and a basic profile page. 
+> ### A simple authentication system built with `Node.js` and `MySQL`. Featuring login, registration and a basic profile page. 
 
 
-
-> [!NOTE]
-> The front-end is located in the `client/`. Written in React and built into `dist/`.
-
----
 
 ## Table of Contents 
 
@@ -31,20 +26,18 @@ A simple authentication system built with **Node.js** and **MySQL**, featuring l
 - [License](#license)
 
 ## Features
-- User login and registration
-- Session management (basic)
-- Profile page (under development)
-- Simple, clean UI for demonstration
-
---- 
+- User login and registration with `jwt` and `bcrypt`.
+- Session management. 
+- Basic profile page _(currently under development)_.
+- Simple, clean UI for demonstration using `React` with `TypeScript`.
 
 ## Requirements 
 
-- Node.JS >= 23
-- MySQL >= 10 
-- npm (Node Package Manager) 
+- `Node.js` >= 23
+- `MySQL` >= 10
+- `npm` (latest version)
 
---- 
+
 
 ## Installation
 
@@ -59,7 +52,7 @@ npm install
 ```
 3. Set up the database (see [Database Setup](#database-setup))
 4. Configure environment variables (see [Environment Variables](#environment-variables)
-5. Start the server
+5. Start the server with
 ```bash
   node server.js
   # or
@@ -67,7 +60,14 @@ npm install
 ```
 6. Open your browser and go to: `http://localhost:3000`
 
----
+> [!NOTE]
+> The front-end is already built and it's inside `dist/`. If you want to make any 
+> changes to it, you need to build it again with: 
+> ```bash
+> npm run build # build command was updated to automatically move the directory to project's root
+> ```
+> That way your changes will take effect when serving from `node server.js` or `npm start`. 
+
 
 ## Database Setup
 
@@ -90,7 +90,7 @@ cp .env.example .env
 ## Usage 
 - Navigate to `/` to log in
 - Navigate to `/sign-up` to register
-- Profile page is at `/profile` (under development) 
+- Profile page is at `/profile`.
 
 
 ## Screenshots
@@ -105,9 +105,9 @@ cp .env.example .env
 <img width="665" height="409" alt="image" src="https://github.com/user-attachments/assets/f01744f4-e908-487e-8e61-45a940361f40" />
 
 ## Future improvements
-- Email verification
-- Full featured profile page with settings (change profile picture, description etc.)
-- Responsive front-end design
+- [ ] Full featured profile page with settings (change profile picture, description etc.)
+- [ ] Email verification
+- [x] Responsive front-end design (React added) 
 
 ## License 
 This project is under the **MIT License**. See [License](LICENSE)
