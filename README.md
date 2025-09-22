@@ -1,5 +1,6 @@
 # NodeJS User Authentication
 
+A simple authentication system built with `Node.js` and `MySQL`. Featuring login, registration and a basic profile page. 
 
 [![React](https://img.shields.io/badge/React.js-v18-61DAFB)](https://nodejs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-v23-5FA04E)](https://nodejs.org/)
@@ -8,9 +9,6 @@
 
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Code Style](https://img.shields.io/badge/Code%20Style-Standard-brightgreen)](https://standardjs.com/)
-
-> ### A simple authentication system built with `Node.js` and `MySQL`. Featuring login, registration and a basic profile page. 
-
 
 
 ## Table of Contents 
