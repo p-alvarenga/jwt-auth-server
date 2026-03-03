@@ -41,8 +41,8 @@ A simple authentication system built with `Node.js` and `MySQL`. Featuring login
 
 1. Clone the repository
 ```bash
-git clone https://github.com/p-alvarenga/nodejs_auth-user-server
-cd nodejs_auth-user-server
+git clone https://github.com/p-alvarenga/jwt-auth-server
+cd jwt-auth-server
 ```
 2. Install dependencies
 ```bash
